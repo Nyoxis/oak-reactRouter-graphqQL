@@ -1,0 +1,10 @@
+{
+  "__comment": "Unstable RSC features in react-router requires Node conditional imports for now",
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router": "7.9.6"
+  },
+  "__comment__vite": "Vite should export js files, since plugin-rsc doesn't support .mjs",
+  "type": "module"
+}

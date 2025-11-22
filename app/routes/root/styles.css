@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+@theme {
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  --spacing-0: 0;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 24px;
+
+  --radius-none: 0;
+  --radius-sm: 2px;
+  --radius: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  --text-1-2xl: 1.375rem;
+}
+
+@layer base {
+  html {
+  }
+  @media (max-width: theme(--breakpoint-md)) {
+    html {
+      font-size: 14px;
+    }
+  }
+  header {
+    user-select: none;
+  }
+  body {
+    overflow-x: hidden;
+  }
+  p {
+    @apply my-[1rem];
+  }
+  a {
+    @apply text-blue-950;
+  }
+  h1, .h1 {
+    @apply font-bold text-[24px] my-[24px] mt-[24px] mb-[10px];
+  }
+  h2, .h2 {
+    @apply font-bold text-[20px] my-[20px] mt-[20px] mb-[10px];
+  }
+  h3, .h3 {
+    @apply font-bold text-[18px] my-[18px] mt-[18px] mb-[10px];
+  }
+
+  input, [type="text"], .text {
+    @apply p-sm rounded inset-shadow-xs inset-shadow-black;
+    @apply transition-colors transition-shadow duration-75;
+  }
+  button, select, [type="button"], [type="submit"], [type="reset"], .button {
+    --button: var(--color-white);
+    --button-bg: var(--button);
+
+    @apply drop-shadow-sm/50 shadow-black;
+    &:hover:not(:disabled, [aria-disabled="true"]) {
+      --button-bg: color-mix(in srgb, var(--button) 95%, white);
+    }
+    &:active:not(:disabled, [aria-disabled="true"]) {
+      --button-bg: color-mix(in srgb, var(--button) 95%, black);
+    }
+    &:disabled, &[aria-disabled="true"] {
+      &:not(.fallback) {
+        --button-bg: color-mix(in srgb, var(--button) 30%, gray);
+      }
+      @apply cursor-auto;
+    }
+    @apply p-sm rounded;
+    @apply bg-[var(--button-bg)];
+    @apply cursor-pointer;
+    @apply transition-all duration-75;
+    & > * {
+      @apply duration-75;
+    }
+  }
+  li {
+    line-height: 2;
+  }
+}
