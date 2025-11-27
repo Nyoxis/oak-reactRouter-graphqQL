@@ -10,7 +10,7 @@ export type PostsLoaderData = {
 
 const selectPost = (post: Post) => ({
   title: post.title,
-  author: post.author.username ?? undefined,
+  author: post.author ?? undefined,
 })
 
 export default async function () {

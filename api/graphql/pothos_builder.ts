@@ -6,7 +6,7 @@ import { DateResolver } from "graphql-scalars"
 import {
   FileUpload,
   GraphQLUpload,
-} from "../../../graphql-upload-deno/src/index.ts"
+} from "graphql-upload-deno"
 
 import { db, drizzle_schema } from "../drizzle/index.ts"
 import { authScopes } from "./sessions.ts"

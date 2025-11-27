@@ -6,7 +6,7 @@ export default {
     Upload: "File",
   },
   preImport:
-    "import { Descendant } from 'slate'; import { Upload } from 'graphql-upload-deno'",
+    "import { Descendant } from 'slate'",
   introspection: {
     endpoint: `${
       Deno.env.get("VITE_GRAPHQL_URL") ??

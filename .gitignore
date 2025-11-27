@@ -1,9 +1,9 @@
-node_modules
-.vscode/
-.vite/
-.env
-dist/
-posts/
-public/
+/node_modules
+/.vscode/
+/.vite/
+/.env
+/dist/
+/posts/
+/public/
 *.sql
 **/meta/
