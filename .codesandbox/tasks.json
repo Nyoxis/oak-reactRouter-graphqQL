@@ -1,0 +1,24 @@
+{
+  "setupTasks": [
+    {
+      "command": "deno install",
+      "name": "Installing Dependencies"
+    },
+    {
+      "command": "deno task push",
+      "name": "Pushing drizzle schema to db"
+    },
+    {
+      "command": "deno task build",
+      "name": "Building Vite app"
+    }
+  ],
+  "tasks": {
+    "start": {
+      "name": "Run Deno Server",
+      "command": "deno task start",
+      "runAtStart": true,
+      "preview": { "port": 8000 }
+    }
+  }
+}

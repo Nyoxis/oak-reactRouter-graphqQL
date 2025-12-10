@@ -12,6 +12,9 @@ const Home = async () => {
           <NavLink to="posts">Posts</NavLink>
         </li>
         <li>
+          <NavLink to="admin">Admin</NavLink>
+        </li>
+        <li>
           <NavLink to="signup">Sign Up</NavLink>
         </li>
       </ol>

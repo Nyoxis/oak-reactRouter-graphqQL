@@ -26,10 +26,17 @@ export type Extensions = {
   Cookie?: string
 }
 
+const baseurl =
+  typeof document !== "undefined" // RSC shall request localhost
+    ? `${globalThis.location?.protocol ?? "http"}//${
+        globalThis.location?.host.startsWith("localhost") || globalThis.location?.host.startsWith("127.0.0.1")
+          ? `127.0.0.1:${Number(import.meta.env.VITE_BACKEND_PORT ?? 8000)}`
+          : globalThis.location?.host
+      }`
+    : `http://127.0.0.1:${Number(import.meta.env.VITE_BACKEND_PORT ?? 8000)}`;
+
 const apiPath = import.meta.env.VITE_GRAPHQL_URL ??
-  `http://${globalThis.location?.hostname ?? "127.0.0.1"}:${
-    Number(import.meta.env.VITE_BACKEND_PORT ?? 8000)
-  }/graphql`
+  `${baseurl}/graphql`
 
 const queryFetcher: QueryFetcher = async function (
   { query, variables, operationName, extensions }: QueryPayload<Extensions>,
@@ -130,7 +137,7 @@ export const {
   defaults: {
     // Set this flag as "true" if your usage involves React Suspense
     // Keep in mind that you can overwrite it in a per-hook basis
-    suspense: typeof window !== "undefined",
+    suspense: typeof document !== "undefined",
 
     // Set this flag based on your needs
     staleWhileRevalidate: false,

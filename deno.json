@@ -25,6 +25,7 @@
     "@std/io": "jsr:@std/io@0.225.2",
     "@std/path": "jsr:@std/path@1.1.2",
     "@std/http": "jsr:@std/http@1.0.21",
+    "@std/fs": "jsr:@std/fs@1.0.20",
     "@types/pg": "npm:@types/pg@^8.15.6",
     "drizzle-kit": "npm:drizzle-kit@^0.31.6",
     "drizzle-orm": "npm:drizzle-orm@^0.39.3",

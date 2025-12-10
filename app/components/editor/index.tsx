@@ -51,7 +51,7 @@ function localRestore(
   let title
   let value
   let isMD
-  if (typeof window !== "undefined") {
+  if (typeof document !== "undefined") {
     const cache = localStorage.getItem(itemName)
     if (cache) {
       try {

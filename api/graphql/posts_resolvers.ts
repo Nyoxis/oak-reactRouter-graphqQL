@@ -1,7 +1,7 @@
 import builder from "./pothos_builder.ts"
 
 import { db } from "../drizzle/index.ts"
-import { posts, users } from "../drizzle/schema.ts"
+import { posts } from "../drizzle/schema.ts"
 import { and, eq, ne } from "drizzle-orm"
 import { renderToStaticMarkup } from "react-dom/server"
 import React from "react"
@@ -10,7 +10,8 @@ import { Descendant } from "slate"
 import { rehype } from "rehype"
 import rehypeSanitize, { defaultSchema } from "rehype-sanitize"
 import validateSlateNodes from "../../utils/validateSlateNodes.ts"
-import { fromFileUrl } from "@std/path"
+import { fromFileUrl, dirname } from "@std/path"
+import { ensureDir } from "@std/fs"
 
 builder.scalarType("SlateJSON", {
   serialize: (value) => value,
@@ -47,17 +48,7 @@ const PostObjType = builder.drizzleObject("posts", {
     }),
     author: t.field({
       type: "String",
-      resolve: async (post) => {
-        const author = await db.query.users.findFirst({
-          where: eq(users.username, post.author),
-        })
-        if (author) {
-          return author.username
-        }
-        throw new Error(
-          "No author can be found for author relation in post type",
-        )
-      },
+      resolve: (post) => post.author,
       nullable: false,
     }),
     dateCreated: t.field({
@@ -127,6 +118,7 @@ async function writeRenderedContent(title: string, content: Descendant[]) {
     .use(rehypeSanitize, allowClassSchema)
     .process(htmlString)
   const filePath = postFilePath(title)
+  await ensureDir(dirname(filePath))
   await Deno.writeTextFile(filePath, cleanHtml.toString())
 }
 

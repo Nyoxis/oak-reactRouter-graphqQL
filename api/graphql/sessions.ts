@@ -6,10 +6,8 @@ import { GqlContext } from "./index.ts"
 let redis
 try {
   redis = await connect({
-    hostname: Deno.env.get("REDIS_HOSTNAME") ?? (() => {
-      throw new Error("unable to get REDIS_HOSTNAME env key")
-    })(),
-    port: Deno.env.get("REDIS_PORT"),
+    hostname: Deno.env.get("REDIS_HOSTNAME") ?? "localhost",
+    port: Deno.env.get("REDIS_PORT") ?? 6379,
     maxRetryCount: 1,
   })
   console.log("redis connected")
