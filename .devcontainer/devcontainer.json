@@ -2,5 +2,5 @@
   "name": "Deno + Postgres + Redis",
   "dockerComposeFile": "docker-compose.yml",
   "service": "deno-app",
-  "workspaceFolder": "project/workspace"
+  "workspaceFolder": "/project/workspace"
 }
