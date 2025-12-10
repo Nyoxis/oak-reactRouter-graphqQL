@@ -1,10 +1,11 @@
 import builder from "./pothos_builder.ts"
 
-import { fromFileUrl } from "@std/path"
+import { dirname, fromFileUrl } from "@std/path"
 import { createSHA256 } from "hash-wasm"
 import { db } from "../drizzle/index.ts"
 import { images, users } from "../drizzle/schema.ts"
 import { eq } from "drizzle-orm"
+import { ensureDir } from "@std/fs"
 
 const ImageObjType = builder.drizzleObject("images", {
   name: "image",
@@ -115,6 +116,7 @@ builder.mutationField("uploadImage", (t) =>
           throw new Error("Not an image")
         }
         const tempPath = imagePathFromFilename(filename)
+        await ensureDir(dirname(tempPath))
         const file = await Deno.open(tempPath, {
           create: true,
           write: true,
