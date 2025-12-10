@@ -2,7 +2,7 @@
 
 Full-stack Deno app with React Router with RSC, GraphQL (Pothos/GQty), Drizzle (Postgres), Redis sessions.
 
-[![CodeSandbox](https://codesandbox.io/p/github/Nyoxis/oak-reactRouter-graphqQL)]
+[CodeSandbox](https://codesandbox.io/p/github/Nyoxis/oak-reactRouter-graphqQL)
 
 ### Tasks
 
